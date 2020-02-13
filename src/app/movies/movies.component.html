@@ -1,0 +1,67 @@
+
+<div class="container p-2 my-5 bg-white">
+  <div class="row">
+    <div class="col-12">
+      <div class="row mb-2">
+        <div class="col-8">
+          <h4>Movies</h4>
+        </div>
+        <div class="col-4">
+          <form [formGroup]="myform">
+            <input class="form-control ml-2" type="text" formControlName="filter" placeholder="Search transaction details"/>
+          </form>
+        </div>
+
+      </div>
+      <div class="table-responsive">
+        <table class="table table-sm table-striped table-bordered table-hover">
+          <thead>
+          <tr>
+            <th>Title</th>
+            <th>Director's name</th>
+            <th>Lead actors name </th>
+            <th>Second lead's name</th>
+            <th>Genres</th>
+            <th>Language</th>
+            <th>Country</th>
+            <th sortable="content_rating" (sort)="onSort($event)">Rating</th>
+            <th sortable="budget" (sort)="onSort($event)">Budget</th>
+            <th sortable="title_year" (sort)="onSort($event)">Year</th>
+            <th>Keywords</th>
+            <th>IMDB link</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let t of datas">
+            <td>{{t.movie_title}}</td>
+            <td>{{t.director_name}}</td>
+            <td>{{t.actor_1_name}}</td>
+            <td>{{t.actor_2_name}}</td>
+            <td>{{t.genres}}</td>
+            <td>{{t.language}}</td>
+            <td>{{t.country}}</td>
+            <td>{{t.content_rating}}</td>
+            <td>{{t.budget}}</td>
+            <td>{{t.title_year}}</td>
+            <td>{{t.plot_keywords}}</td>
+            <td>
+              <a href="{{t.movie_imdb_link}}" target="_blank">IMDB Link</a>
+            </td>
+          </tr>
+          <tr>
+            <td colspan="12" *ngIf="data && data.length === 0" class="text-center">
+              No data available
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end p-2">
+        <ngb-pagination [collectionSize]="collectionSize" [(page)]="page" [pageSize]="pageSize">
+        </ngb-pagination>
+      </div>
+    </div>
+  </div>
+</div>
+
+
